@@ -36,6 +36,7 @@ export default class TodoModel {
      */
   static createTodo = (newTodo) => {
     console.log('\t\t Model : createTodo()');
+    console.log('Created new Todo', newTodo);
     todoList.push(newTodo);
     return newTodo;
   };
@@ -49,6 +50,7 @@ export default class TodoModel {
 
   static deleteTodo = (id) => {
     console.log('\t\t Model : deleteTodo()');
+    console.log('Deleted Todo', id);
 
     const TodoCountBeforeDelete = todoList.length;
     todoList = todoList.filter((w) => (w.id !== id));
@@ -62,6 +64,7 @@ export default class TodoModel {
 
   static replaceTodo = (id, todo) => {
     const TodoIndex = todoList.findIndex((t) => (t.id === id));
+    console.log('Replaced Todo', id, todo);
 
     if (TodoIndex > -1) {
       todoList.splice(TodoIndex, 1, todo);
@@ -73,6 +76,7 @@ export default class TodoModel {
 
   static updateTodo = (id, todo) => {
     const todoIndex = todoList.findIndex((w) => (w.id === id));
+    console.log('Updated Todo', id, todo);
 
     if (todoIndex > -1) {
       Object.keys(todo).forEach((key) => {
