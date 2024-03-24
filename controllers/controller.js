@@ -7,10 +7,10 @@ import TodoListCoordinator from '../coordinators/coordinator.js';
  * @param {Object} res - Express Response Object
  * @param {Function} next - Express "next" middleware function
  */
-export const todoList = async (req, res, next) => {
+export const getTodos = async (req, res, next) => {
   console.log('Controller : getTodos()');
 
-  const result = TodoListCoordinator.todoList();
+  const result = TodoListCoordinator.getTodos();
 
   res.status(200).json(result);
 };

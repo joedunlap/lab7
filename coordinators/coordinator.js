@@ -2,9 +2,9 @@ import { v4 as uuid } from 'uuid';
 import TodoModel from '../models/models.js';
 
 export default class TodoListCoordinator {
-  static todoList = () => {
+  static getTodos = () => {
     console.log('\t Coordinator : todoList()');
-    return TodoModel.todoList();
+    return TodoModel.getTodos();
   };
 
   static createTodo = (newTodo) => {
@@ -15,12 +15,12 @@ export default class TodoListCoordinator {
       id: uuid(),
     };
 
-    return TodoModel.createWidget(todo);
+    return TodoModel.createTodo(todo);
   };
 
   static getTodo = (id) => {
     console.log('\t Coordinator : getTodo()');
-    return TodoModel.getWidget(id);
+    return TodoModel.getTodo(id);
   };
 
   static deleteTodo = (id) => {
@@ -34,11 +34,11 @@ export default class TodoListCoordinator {
       ...todo,
       id,
     };
-    return TodoModel.replaceWidget(id, replaceTodo);
+    return TodoModel.replaceTodo(id, replaceTodo);
   };
 
   static updateTodo = (id, todo) => {
     console.log('\t Coordinator : replaceTodo()');
-    return TodoModel.updateWidget(id, todo);
+    return TodoModel.updateTodo(id, todo);
   };
 }

@@ -2,17 +2,20 @@ let todoList = [
   {
     id: '1',
     description: 'Laundry',
-    createdAt: 2024-03-15T00:03:16.625Z,
+    createdAt: '2024 - 3 - 15',
+    color: 'red',
   },
   {
     id: '2',
     description: 'Do the Dishes',
-    createdAt: 2024-03-15T00:03:16.625Z,
+    createdAt: '2024 - 3 - 25',
+    color: 'green',
   },
   {
     id: '3',
     description: 'Feed the Cat',
-    createdAt: 2024-03-15T00:03:16.625Z,
+    createdAt: '2024 - 3 - 15',
+    color: 'blue',
   },
 ];
 
@@ -21,7 +24,7 @@ export default class TodoModel {
      * getWidgets - return a list of widgets from the database
      * @returns {Array} - An array of widget objects.
      */
-  static listTodos = () => {
+  static getTodos = () => {
     console.log('\t\t Model : listTodos()');
     return todoList;
   };

@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  todoList,
+  getTodos,
   createTodo,
   getTodo,
   replaceTodo,
@@ -11,7 +11,7 @@ import {
 const TodosRouter = express.Router();
 
 // GET /api/v1/todos
-TodosRouter.get('/', todoList);
+TodosRouter.get('/', getTodos);
 
 // POST /api/v1/todos
 TodosRouter.post('/', createTodo);
