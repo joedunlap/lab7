@@ -1,47 +1,44 @@
 import { v4 as uuid } from 'uuid';
-import TodoModle from '../models/models.js';
-
+import TodoModel from '../models/models.js';
 
 export default class TodoListCoordinator {
- 
-  static getWidgets = () => {
-    console.log('\t Coordinator : getWidgets()');
-    return WidgetsModel.getWidgets();
+  static todoList = () => {
+    console.log('\t Coordinator : todoList()');
+    return TodoModel.todoList();
   };
 
- 
-  static createWidget = (newWidget) => {
-    console.log('\t Coordinator : createWidget()');
+  static createTodo = (newTodo) => {
+    console.log('\t Coordinator : createTodo()');
 
-    const widget = {
-      ...newWidget,
+    const todo = {
+      ...newTodo,
       id: uuid(),
     };
 
-    return WidgetsModel.createWidget(widget);
+    return TodoModel.createWidget(todo);
   };
 
-  static getWidget = (id) => {
-    console.log('\t Coordinator : getWidget()');
-    return WidgetsModel.getWidget(id);
+  static getTodo = (id) => {
+    console.log('\t Coordinator : getTodo()');
+    return TodoModel.getWidget(id);
   };
 
-  static deleteWidget = (id) => {
-    console.log('\t Coordinator : deleteWidget()');
-    return WidgetsModel.deleteWidget(id);
+  static deleteTodo = (id) => {
+    console.log('\t Coordinator : deleteTodo()');
+    return TodoModel.deleteTodo(id);
   };
 
-  static replaceWidget = (id, widget) => {
-    console.log('\t Coordinator : replaceWidget()');
-    const replaceWidget = {
-      ...widget,
+  static replaceTodo = (id, todo) => {
+    console.log('\t Coordinator : replaceTodo()');
+    const replaceTodo = {
+      ...todo,
       id,
     };
-    return WidgetsModel.replaceWidget(id, replaceWidget);
+    return TodoModel.replaceWidget(id, replaceTodo);
   };
 
-  static updateWidget = (id, widget) => {
-    console.log('\t Coordinator : replaceWidget()');
-    return WidgetsModel.updateWidget(id, widget);
+  static updateTodo = (id, todo) => {
+    console.log('\t Coordinator : replaceTodo()');
+    return TodoModel.updateWidget(id, todo);
   };
 }
