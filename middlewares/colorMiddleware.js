@@ -13,4 +13,4 @@ const colorToHex = (req, res, next) => {
   next();
 };
 
-module.exports = colorToHex;
+export default colorToHex; 

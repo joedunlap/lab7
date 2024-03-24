@@ -1,21 +1,24 @@
 let todoList = [
   {
-    id: '1',
     description: 'Laundry',
-    createdAt: '2024 - 3 - 15',
-    color: 'red',
-  },
-  {
-    id: '2',
-    description: 'Do the Dishes',
-    createdAt: '2024 - 3 - 25',
-    color: 'green',
-  },
-  {
-    id: '3',
-    description: 'Feed the Cat',
-    createdAt: '2024 - 3 - 15',
+    createdAt: new Date('2024-03-15').toISOString(),
     color: 'blue',
+    hexColor: '#0000ff',
+    id: '1',
+  },
+  {
+    description: 'Do the Dishes',
+    createdAt: new Date('2024-03-15').toISOString(),
+    color: 'blue',
+    hexColor: '#0000ff',
+    id: '2',
+  },
+  {
+    description: 'Feed the Cat',
+    createdAt: new Date('2024-03-15').toISOString(),
+    color: 'blue',
+    hexColor: '#0000ff',
+    id: '3',
   },
 ];
 
@@ -36,6 +39,7 @@ export default class TodoModel {
      */
   static createTodo = (newTodo) => {
     console.log('\t\t Model : createTodo()');
+    newTodo.createdAt = new Date().toISOString();
     console.log('Created new Todo', newTodo);
     todoList.push(newTodo);
     return newTodo;
