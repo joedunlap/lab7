@@ -27,10 +27,7 @@ export default class TodoModel {
      * getWidgets - return a list of widgets from the database
      * @returns {Array} - An array of widget objects.
      */
-  static getTodos = () => {
-    console.log('\t\t Model : listTodos()');
-    return todoList;
-  };
+  static getTodos = () => todoList;
 
   /**
      * createTodo - Insert a new widget object into database
@@ -38,7 +35,6 @@ export default class TodoModel {
      * @returns {Object} - The created todo.
      */
   static createTodo = (newTodo) => {
-    console.log('\t\t Model : createTodo()');
     newTodo.createdAt = new Date().toISOString();
     console.log('Created new Todo', newTodo);
     todoList.push(newTodo);
@@ -46,14 +42,11 @@ export default class TodoModel {
   };
 
   static getTodo = (id) => {
-    console.log('\t\t Model : getTodo()');
-
     const ToDo = todoList.find((t) => (t.id === id));
     return ToDo;
   };
 
   static deleteTodo = (id) => {
-    console.log('\t\t Model : deleteTodo()');
     console.log('Deleted Todo', id);
 
     const TodoCountBeforeDelete = todoList.length;
