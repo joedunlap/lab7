@@ -1,0 +1,8 @@
+{
+    "mongo": {
+      "url": "mongodb://PROD-mongo-instance:27017",
+      "database": "todo",
+      "minPoolSize": 10,
+      "maxPoolSize": 50
+    }
+  }

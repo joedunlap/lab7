@@ -1,3 +1,4 @@
+import config from 'config';
 import express from 'express';
 import bodyParser from 'body-parser';
 import colorToHex from './middlewares/colorMiddleware.js';
