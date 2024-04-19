@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://myapplication/todo.json",
+    "title": "Todo",
+    "description": "A Todo",
+    "type": "object",
+    "required": ["id", "description"],
+    "properties": {
+      "id": {
+        "description": "The unique id for this todo in UUID format",
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": {
+        "description": "Description of this todo",
+        "type": "string",
+        "minLength": 3
+      },
+      "color": {
+        "description": "The color of this todo",
+        "type": "string",
+        "enum": ["red", "green", "blue"]
+      },
+      "createdAt": {
+        "description": "When this todo was created",
+        "type": "string",
+        "format": "date-time"
+      },
+      
+     
+       
+    }
+  }

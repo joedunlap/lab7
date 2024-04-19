@@ -9,8 +9,8 @@ const colorToHex = (req, res, next) => {
   if (req.body.color && colorMap[req.body.color]) {
     req.body.hexColor = colorMap[req.body.color];
   }
-
+  req.body.validationPassed = true;
   next();
 };
 
-export default colorToHex; 
+export default colorToHex;

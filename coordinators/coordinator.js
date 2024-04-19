@@ -1,5 +1,8 @@
 import { v4 as uuid } from 'uuid';
+import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 import TodoModel from '../models/models.js';
+import todoSchema from '../schemas/todo.json';
 
 export default class TodoListCoordinator {
   static getTodos = () => TodoModel.getTodos();

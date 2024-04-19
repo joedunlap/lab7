@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import colorToHex from './middlewares/colorMiddleware.js';
 import errorMiddleware from './middlewares/errorHandler.js';
 import TodosRouter from './routers/routes.js';
+import { db } from './lib/database.js';
 
 const { json } = bodyParser;
 // Express Application
@@ -21,6 +22,11 @@ app.use('/api/v1/todos', TodosRouter);
 
 // Error middleware MUST be last
 app.use(errorMiddleware);
+
+const mongoConfig = config.get('mongo');
+console.log(mongoConfig);
+
+db.init(mongoConfig);
 
 app.listen(port, () => {
   console.log(`Starting express application on port ${port} @ ${new Date().toISOString()}`);
