@@ -19,7 +19,6 @@ export default class TodoModel {
     { projection: Constants.DEFAULT_PROJECTION },
   ).toArray();
 
-
   static createTodo = async (newTodo) => {
     newTodo.createdAt = new Date().toISOString();
     console.log('Created new Todo', newTodo);
@@ -37,35 +36,39 @@ export default class TodoModel {
   static deleteTodo = (id) => {
     console.log('Deleted Todo', id);
     return db.dbTODOS().deleteOne({ id });
+  };
 
-    
+  static replaceTodo = async (id, todo) => {
+    const result = await db.dbTODOS().replaceOne({ id }, todo);
 
-  static replaceTodo = (id, todo) => {
-    const TodoIndex = todoList.findIndex((t) => (t.id === id));
-    console.log('Replaced Todo', id, todo);
-
-    if (TodoIndex > -1) {
-      todoList.splice(TodoIndex, 1, todo);
+    if (result.matchedCount === 1) {
       return todo;
     }
 
     return false;
   };
 
-  static updateTodo = (id, todo) => {
-    const todoIndex = todoList.findIndex((w) => (w.id === id));
+  static updateTodo = async (id, todo) => {
     console.log('Updated Todo', id, todo);
 
-    if (todoIndex > -1) {
-      Object.keys(todo).forEach((key) => {
-        if (key === 'id') {
-          return;
-        }
+    const update = {
+      $set: {},
+    };
 
-        todoList[todoIndex][key] = todo[key];
-      });
+    Object.keys(todo).forEach((key) => {
+      if (key === 'id') {
+        return;
+      }
 
-      return todoList[todoIndex];
+      update.$set[key] = todo[key];
+    });
+
+    const result = await db.dbTODOS().findOneAndUpdate({ id }, update, { returnDocument: 'after' });
+
+    if (result) {
+      // eslint-disable-next-line no-underscore-dangle
+      delete result._id;
+      return result;
     }
 
     return false;
