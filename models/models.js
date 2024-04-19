@@ -3,20 +3,7 @@ import Constants from '../lib/constants.js';
 
 
 let todoList = [
-  {
-    description: 'Laundry',
-    createdAt: new Date('2024-03-15').toISOString(),
-    color: 'blue',
-    hexColor: '#0000ff',
-    id: '1',
-  },
-  {
-    description: 'Do the Dishes',
-    createdAt: new Date('2024-03-15').toISOString(),
-    color: 'blue',
-    hexColor: '#0000ff',
-    id: '2',
-  },
+
   {
     description: 'Feed the Cat',
     createdAt: new Date('2024-03-15').toISOString(),
@@ -27,22 +14,21 @@ let todoList = [
 ];
 
 export default class TodoModel {
-  /**
-     * getWidgets - return a list of widgets from the database
-     * @returns {Array} - An array of widget objects.
-     */
-  static getTodos = () => todoList;
+  static getTodos = async () => db.dbTODOS().find(
+    {},
+    { projection: Constants.DEFAULT_PROJECTION },
+  ).toArray();
 
-  /**
-     * createTodo - Insert a new widget object into database
-     * @param {Object} newTodo - The new todo to create in the database
-     * @returns {Object} - The created todo.
-     */
-  static createTodo = (newTodo) => {
+
+  static createTodo = async (newTodo) => {
     newTodo.createdAt = new Date().toISOString();
     console.log('Created new Todo', newTodo);
-    todoList.push(newTodo);
-    return newTodo;
+    await db.dbTODOS().insertOne(newTodo);
+
+    const returnTodo = { ...newTodo };
+    // eslint-disable-next-line no-underscore-dangle
+    delete returnTodo._id;
+    return returnTodo;
   };
 
   static getTodo = (id) => {
