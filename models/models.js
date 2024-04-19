@@ -31,23 +31,14 @@ export default class TodoModel {
     return returnTodo;
   };
 
-  static getTodo = (id) => {
-    const ToDo = todoList.find((t) => (t.id === id));
-    return ToDo;
-  };
+  // eslint-disable-next-line max-len
+  static getTodo = (id) => db.dbTODOS().findOne({ id }, { projection: Constants.DEFAULT_PROJECTION });
 
   static deleteTodo = (id) => {
     console.log('Deleted Todo', id);
+    return db.dbTODOS().deleteOne({ id });
 
-    const TodoCountBeforeDelete = todoList.length;
-    todoList = todoList.filter((w) => (w.id !== id));
-
-    if (TodoCountBeforeDelete === todoList.length) {
-      return false;
-    }
-
-    return true;
-  };
+    
 
   static replaceTodo = (id, todo) => {
     const TodoIndex = todoList.findIndex((t) => (t.id === id));
