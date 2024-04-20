@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const middleware = () => (err, req, res, next) => {
   console.error(`ERROR : The following error occurred : ${err}`);
 

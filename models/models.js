@@ -1,7 +1,7 @@
+/* eslint-disable import/extensions */
 import { db } from '../lib/database.js';
 import Constants from '../lib/constants.js';
-
-
+/*
 let todoList = [
 
   {
@@ -12,7 +12,7 @@ let todoList = [
     id: '3',
   },
 ];
-
+*/
 export default class TodoModel {
   static getTodos = async () => db.dbTODOS().find(
     {},
@@ -20,6 +20,7 @@ export default class TodoModel {
   ).toArray();
 
   static createTodo = async (newTodo) => {
+    // eslint-disable-next-line no-param-reassign
     newTodo.createdAt = new Date().toISOString();
     console.log('Created new Todo', newTodo);
     await db.dbTODOS().insertOne(newTodo);

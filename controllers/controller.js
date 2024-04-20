@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import TodoListCoordinator from '../coordinators/coordinator.js';
 
 export const getTodos = async (req, res, next) => {
@@ -41,7 +42,7 @@ export const deleteTodo = async (req, res, next) => {
 
 export const replaceTodo = async (req, res, next) => {
   try {
-    const result = TodoListCoordinator.replaceTodo(req.params.id, req.body);
+    const result = await TodoListCoordinator.replaceTodo(req.params.id, req.body);
 
     if (result) {
       res.status(200).json(result);
