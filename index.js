@@ -31,5 +31,3 @@ db.init(mongoConfig);
 app.listen(port, () => {
   console.log(`Starting express application on port ${port} @ ${new Date().toISOString()}`);
 });
-
-

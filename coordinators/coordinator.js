@@ -48,6 +48,6 @@ export default class TodoListCoordinator {
     if (!valid) {
       throw validate.errors;
     }
-    TodoModel.updateTodo(id, todo);
+   return TodoModel.updateTodo(id, todo);
   };
 }

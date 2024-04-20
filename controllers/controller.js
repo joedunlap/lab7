@@ -56,8 +56,8 @@ export const replaceTodo = async (req, res, next) => {
 
 export const updateTodo = async (req, res, next) => {
   try {
-    const result = TodoListCoordinator.updateTodo(req.params.id, req.body);
-
+    const result = await TodoListCoordinator.updateTodo(req.params.id, req.body);
+    console.log(result);
     if (result) {
       res.status(200).json(result);
     } else {
