@@ -4,6 +4,10 @@ import addFormats from 'ajv-formats';
 import TodoModel from '../models/models.js';
 import todoSchema from '../schemas/todo.json';
 
+const ajv = new Ajv();
+addFormats(ajv);
+const validate = ajv.compile(todoSchema);
+
 export default class TodoListCoordinator {
   static getTodos = () => TodoModel.getTodos();
 
@@ -12,6 +16,11 @@ export default class TodoListCoordinator {
       ...newTodo,
       id: uuid(),
     };
+
+    const valid = validate(todo);
+    if (!valid) {
+      throw validate.errors;
+    }
 
     return TodoModel.createTodo(todo);
   };
@@ -25,8 +34,19 @@ export default class TodoListCoordinator {
       ...todo,
       id,
     };
+
+    const valid = validate(todo);
+    if (!valid) {
+      throw validate.errors;
+    }
     return TodoModel.replaceTodo(id, replaceTodo);
   };
 
-  static updateTodo = (id, todo) => TodoModel.updateTodo(id, todo);
+  static updateTodo = (id, todo) => {
+    const valid = validate(todo);
+    if (!valid) {
+      throw validate.errors;
+    }
+    TodoModel.updateTodo(id, todo);
+  };
 }
