@@ -19,7 +19,8 @@ export default class TodoListCoordinator {
 
     const valid = validate(todo);
     if (!valid) {
-      throw validate.errors;
+      const errors = validate.errors.map(error => error.message).join(', ');
+    throw new Error(`Validation failed: ${errors}`);;
     }
 
     return TodoModel.createTodo(todo);
@@ -35,7 +36,7 @@ export default class TodoListCoordinator {
       id,
     };
 
-    const valid = validate(replaceTodo);
+    const valid = validate(todo);
     if (!valid) {
       throw validate.errors;
     }
@@ -43,7 +44,7 @@ export default class TodoListCoordinator {
   };
 
   static updateTodo = (id, todo) => {
-    const valid = validate(updateTodo);
+    const valid = validate(todo);
     if (!valid) {
       throw validate.errors;
     }
