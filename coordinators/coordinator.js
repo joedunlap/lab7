@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import TodoModel from '../models/models.js';
-import todoSchema from '../schemas/todo.json';
+import todoSchema from '../schemas/todo.json' assert { type: 'json' };
 
 const ajv = new Ajv();
 addFormats(ajv);
@@ -35,7 +35,7 @@ export default class TodoListCoordinator {
       id,
     };
 
-    const valid = validate(todo);
+    const valid = validate(replaceTodo);
     if (!valid) {
       throw validate.errors;
     }
@@ -43,7 +43,7 @@ export default class TodoListCoordinator {
   };
 
   static updateTodo = (id, todo) => {
-    const valid = validate(todo);
+    const valid = validate(updateTodo);
     if (!valid) {
       throw validate.errors;
     }

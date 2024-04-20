@@ -6,6 +6,7 @@ import errorMiddleware from './middlewares/errorHandler.js';
 import TodosRouter from './routers/routes.js';
 import { db } from './lib/database.js';
 
+
 const { json } = bodyParser;
 // Express Application
 const app = express();
