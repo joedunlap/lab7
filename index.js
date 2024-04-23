@@ -20,6 +20,11 @@ app.put('/api/v1/todos/:id', colorToHex);
 
 app.use('/api/v1/todos', TodosRouter);
 
+// Catch-all route for handling undefined routes
+app.use((req, res, next) => {
+  res.status(404).json({ message: 'Not Found, check url' });
+});
+
 // Error middleware MUST be last
 app.use(errorMiddleware);
 

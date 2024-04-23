@@ -13,7 +13,11 @@ export const getTodos = async (req, res, next) => {
 export const createTodo = async (req, res, next) => {
   try {
     const result = TodoListCoordinator.createTodo(req.body);
-    res.status(201).json(result);
+    if (result) {
+      res.status(201).json(result);
+    } else {
+      res.status(404).json();
+    }
   } catch (ex) {
     next(ex);
   }
